@@ -36,7 +36,6 @@ public class HorsePushModule extends ReactContextBaseJavaModule {
     //得到用户app包名列表
     @ReactMethod
     public static void getUserAppPackageNameArray(Callback callback) {
-
         if (mReactApplicationContext == null)
             return;
         PackageManager packageManager = mReactApplicationContext.getPackageManager();
@@ -55,12 +54,18 @@ public class HorsePushModule extends ReactContextBaseJavaModule {
     }
 
 
+    //让启动页面隐藏
+    @ReactMethod
+    public static void setStartPageHide() {
+        HorsePushStartPage.mActivity.finish();
+    }
+
     //小型存储用的 set
     @ReactMethod
     public static void setExtraData(String value) {
         if (mReactApplicationContext == null)
             return;
-        setSharedPreferences(mReactApplicationContext, HORSEPUSH +"extradata", value);
+        setSharedPreferences(mReactApplicationContext, HORSEPUSH + "extradata", value);
     }
 
     @ReactMethod
