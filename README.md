@@ -8,6 +8,7 @@
 这里我会给你后端如何返回数据的一个简单demo。
 
 ## Installation
+        具体原理看优酷视频第46分钟开始 http://v.youku.com/v_show/id_XMTUxOTE5MzQwNA==.html
 	把这个项目下载下来，在你的程序引入这个依赖包
 	
 	在安卓的assets文件夹下面放置你的js bundle文件，文件名一定要为 horse.push.js，就是我们的基础，因为我们的差异更新必须有一个基础包，在你发布到时候的时候你可以内嵌一个最新的jsbundle包就可以了
@@ -17,7 +18,7 @@
 
 ```java
 	public void onCreate() {
-        new HorsePush(getApplicationContext(),"http://you.server/horsepush",MyNativeAndJS.getMetaDataValue(getApplicationContext(), "UMENG_CHANNEL"));// <------ 加入这个代码
+	HorsePush.getInstance(getApplicationContext(), "http://you.server/horsepush", "you_channel");// <------ 加入这个代码
     }
 	
 ```
@@ -27,7 +28,19 @@
 * 修改 MainActivity (in MainActivity.java)
 
 ```java
-	protected String getJSBundleFile() { return HorsePush.getJSBundleFile(this); }// <------ 加入这个代码
+
+    protected void onCreate(Bundle savedInstanceState) {
+        startActivity(new Intent().setClass(getApplicationContext(), HorsePushStartPage.class));// <------ 加入这个代码，使用启动屏
+    }
+
+
+    protected String getJSBundleFile() {
+        return HorsePush.getJSBundleFile(this); // <------ 加入这个代码告诉rn通过本地启动
+    } 
+
+    protected void onResume() {
+        HorsePush.reCheckUpdate();//<------每次从后台返回都会尝试更新
+    }
 }
 ```
 
@@ -41,7 +54,6 @@
 	每次打开app的时候都会请求你在application里面写的接口，由接口返回更新数据，数据格式如下,
 	每次会吧自己的app版本号和渠道号和js的md5传送给服务器，由服务器返回的数据决定是差异更新还是完整更新，
 	如果差异更新里面字段有内容就用差异更新进行更新，
-	具体原理看优酷视频第46分钟开始 http://v.youku.com/v_show/id_XMTUxOTE5MzQwNA==.html
 	
 	{
 		"code": 200,
@@ -53,11 +65,12 @@
 			"javaPatchDownlink": "http://you.server/patch.apk",
 			"javaDownlink": "http://you.server/newversion.apk",
 			"javaDownlinkMd5": "you apk md5",
-			"jsVersionInfo": "欢迎使用爱海购，点击确定体验一键海淘",
+			"jsVersionInfo": "欢迎使用xxx，点击确定进入最新版",
 			"jsForceUpdate": false,
 			"jsPatchDownlink": "http://you.server/patch.js",
 			"jsDownlink": "http://you.server/newversion.js",
-			"jsDownlinkMd5": "you js md5"
+			"jsDownlinkMd5": "you js md5",
+			"startpageimg": "http://you.server/startpageimg.jpg",
 		}
 	}
 	
