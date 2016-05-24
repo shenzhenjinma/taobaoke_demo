@@ -15,6 +15,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableArray;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by techbin on 2016/3/22 0022.
@@ -53,6 +54,12 @@ public class HorsePushModule extends ReactContextBaseJavaModule {
         callback.invoke(map);
     }
 
+    @ReactMethod
+    public void getLanguage(Callback callback) {
+        Locale locale = HorsePushStartPage.mActivity.getResources().getConfiguration().locale;
+        String language = locale.getLanguage();
+        callback.invoke(language);
+    }
 
     //让启动页面隐藏
     @ReactMethod
