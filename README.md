@@ -10,8 +10,8 @@
 ![业务流程图](readme/visio1.png)
 
 
-## Installation
-	具体原理看优酷视频第46分钟开始 http://v.youku.com/v_show/id_XMTUxOTE5MzQwNA==.html
+## 具体原理看优酷视频第46分钟开始 http://v.youku.com/v_show/id_XMTUxOTE5MzQwNA==.html
+
 	把这个项目下载下来，在你的程序引入这个依赖包
 	
 	在安卓的assets文件夹下面放置你的js bundle文件，文件名一定要为 horse.push.js，就是我们的基础，因为我们的差异更新必须有一个基础包，在你发布到时候的时候你可以内嵌一个最新的jsbundle包就可以了
