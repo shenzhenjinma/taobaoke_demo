@@ -7,8 +7,11 @@
 这个插件已经在app端实现了所有需要的功能了，后端我还在写，如果你很急可以根据你的业务逻辑写下你的后端，到时候后端会放出。
 这里我会给你后端如何返回数据的一个简单demo。
 
+![业务流程图](readme/visio1.png)
+
+
 ## Installation
-        具体原理看优酷视频第46分钟开始 http://v.youku.com/v_show/id_XMTUxOTE5MzQwNA==.html
+	具体原理看优酷视频第46分钟开始 http://v.youku.com/v_show/id_XMTUxOTE5MzQwNA==.html
 	把这个项目下载下来，在你的程序引入这个依赖包
 	
 	在安卓的assets文件夹下面放置你的js bundle文件，文件名一定要为 horse.push.js，就是我们的基础，因为我们的差异更新必须有一个基础包，在你发布到时候的时候你可以内嵌一个最新的jsbundle包就可以了

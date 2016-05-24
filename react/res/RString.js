@@ -26,7 +26,7 @@
 import Configs from './RConfigs';
 let getString = (key)=> {
     let language = Configs.language;
-    let languagePackage;
+    let languagePackage = languagePackage = require("./string/zh");;
     try {
         switch (language) {
             case "en":
@@ -35,13 +35,9 @@ let getString = (key)=> {
             case "in":
                 languagePackage = require("./string/in");
                 break;
-            default:
-                languagePackage = require("./string/zh");
         }
     }
-    catch (e) {
-        languagePackage = require("./string/zh");
-    }
+    catch (e) { }
     return languagePackage[key];
 };
 module.exports = key=>getString(key);
